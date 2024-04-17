@@ -1,0 +1,17 @@
+Version: '3'
+Services:
+ db:
+     image: mysql
+     container_name: mysql_db
+     restart: always
+     environment:
+      -MYSQL_ROOT_PASSWORD="secret"
+ web:
+     image: apache
+     build: ./webapp
+     depends_on:
+        -db
+     container_name: apa_web
+     restart: always
+     ports:
+       -"8080:80"   
